@@ -23,6 +23,7 @@ object Lab2 extends App:
 
   //Task 2
 
+  //a
   val positiveLambda: Int => String = _ match
     case x if x < 0 => "negative"
     case _ => "positive"
@@ -33,3 +34,16 @@ object Lab2 extends App:
 
   println(s"positive lambda of 3: ${positiveLambda(3)} and -3: ${positiveLambda(-3)}")
   println(s"positive method of 3: ${positiveMethod(3)} and -3: ${positiveMethod(-3)}")
+
+  //b
+  def neg(predicate: String => Boolean): String => Boolean = s => !predicate(s)
+
+  val negLambda: (String => Boolean) => (String => Boolean) = predicate => s => !predicate(s)
+
+  def negMethod(predicate: String => Boolean): String => Boolean = s => !predicate(s)
+
+  val empty: String => Boolean = _ == ""
+  val notEmpty = neg(empty)
+  println(s"notEmpty(\"foo\"): ${notEmpty("foo")}") // true
+  println(s"notEmpty(\"\"): ${notEmpty("")}") // false
+  println(s"notEmpty(\"foo\") && !notEmpty(\"\"): ${notEmpty("foo") && !notEmpty("")}")
