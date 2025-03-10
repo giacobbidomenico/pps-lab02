@@ -19,3 +19,17 @@ object Lab2 extends App:
   //divide curried by 3
   val divideCurriedBy3 = divideCurried(3)
   println(s"divideCurriedBy3: $divideCurriedBy3")
+
+
+  //Task 2
+
+  val positiveLambda: Int => String = _ match
+    case x if x < 0 => "negative"
+    case _ => "positive"
+
+  def positiveMethod(x : Int): String = x match
+    case x if x < 0 => "negative"
+    case _ => "positive"
+
+  println(s"positive lambda of 3: ${positiveLambda(3)} and -3: ${positiveLambda(-3)}")
+  println(s"positive method of 3: ${positiveMethod(3)} and -3: ${positiveMethod(-3)}")
