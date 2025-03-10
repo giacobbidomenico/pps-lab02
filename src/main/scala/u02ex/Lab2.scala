@@ -47,3 +47,14 @@ object Lab2 extends App:
   println(s"notEmpty(\"foo\"): ${notEmpty("foo")}") // true
   println(s"notEmpty(\"\"): ${notEmpty("")}") // false
   println(s"notEmpty(\"foo\") && !notEmpty(\"\"): ${notEmpty("foo") && !notEmpty("")}")
+
+  //c
+  def negGeneric[A](predicate: A => Boolean): A => Boolean = (a: A) => !predicate(a)
+  val isEven: Int => Boolean = _ % 2 == 0
+  val isOdd = negGeneric(isEven)
+
+  println(s"isOdd(3): ${isOdd(3)}")
+  println(s"isOdd(4): ${isOdd(4)}")
+  println(s"isEven(3): ${isEven(3)}")
+  println(s"isEven(4): ${isEven(4)}")
+
