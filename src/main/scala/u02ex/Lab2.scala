@@ -91,3 +91,19 @@ object Lab2 extends App:
   //6
   def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = composeGeneric(f,composeGeneric(g, h))
   println(s"${composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3)}")
+
+  //7
+  def power(base: Double, exponent: Int): Double = exponent match
+    case 0 => 1
+    case _ => base * power(base, exponent - 1)
+
+  println(s"power(2, 3):${power(2, 3)}, powerTail(5, 2):${power(5, 2)}")
+
+  def powerTail(base: Double, exponent: Int): Double =
+    @annotation.tailrec
+    def _power(base: Double, exponent: Int, acc: Double): Double = exponent match
+      case 0 => acc
+      case _ => _power(base, exponent - 1, base * acc)
+    _power(base, exponent, 1)
+
+  println(s"powerTail(2, 3):${powerTail(2,3)}, powerTail(5, 2):${powerTail(5,2)}")
