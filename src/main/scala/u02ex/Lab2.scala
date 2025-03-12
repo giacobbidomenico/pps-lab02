@@ -75,3 +75,19 @@ object Lab2 extends App:
   def p4(x: Int,y: Int,z: Int): Boolean = x <= y && y == z
   println(s"p4(3,4,4):${p4(3, 4, 4)}")
   println(s"p4(5,4,4):${p4(5, 4, 4)}")
+
+  //5
+  def compose(f: Int => Int, g: Int => Int): Int => Int = x => f(g(x))
+  println(s"compose(_- 1, _ * 2)(5):${compose(_- 1, _ * 2)(5)}")
+
+  /**
+   * Non si può usare direttamente composeGeneric(_- 1, _ * 2)(5)
+   * Gli underscore _ rappresentano funzioni anonime, ma senza un contesto
+   * tipizzato, il compilatore non può determinare automaticamente i tipi A, B, C.
+   */
+  def composeGeneric[A, B, C](f: B => C, g: A => B): A => C = x => f(g(x))
+  println(s"composeGeneric[Int, Int, Int](_- 1, _ * 2)(5):${composeGeneric[Int,Int,Int](_- 1, _ * 2)(5)}")
+
+  //6
+  def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = composeGeneric(f,composeGeneric(g, h))
+  println(s"${composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3)}")
