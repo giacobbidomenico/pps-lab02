@@ -92,6 +92,7 @@ object Lab2 extends App:
   def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = composeGeneric(f,composeGeneric(g, h))
   println(s"${composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3)}")
 
+  //Task 3
   //7
   def power(base: Double, exponent: Int): Double = exponent match
     case 0 => 1
@@ -107,3 +108,12 @@ object Lab2 extends App:
     _power(base, exponent, 1)
 
   println(s"powerTail(2, 3):${powerTail(2,3)}, powerTail(5, 2):${powerTail(5,2)}")
+
+  //8
+  def reverseNumber(n: Int): Int =
+    @annotation.tailrec
+    def _reverse(n: Int, acc: Int): Int = n match
+      case 0 => acc
+      case _ => _reverse(n / 10, if(acc != 1) ((n % 10) + (acc * 10)) else (n % 10))
+    _reverse(n, 1)
+  println(s"reverseNumber(7895):${reverseNumber(7895)}")
