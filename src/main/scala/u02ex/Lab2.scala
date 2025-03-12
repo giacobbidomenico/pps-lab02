@@ -23,6 +23,7 @@ object Lab2 extends App:
 
   //Task 2
 
+  //3
   //a
   val positiveLambda: Int => String = _ match
     case x if x < 0 => "negative"
@@ -58,3 +59,19 @@ object Lab2 extends App:
   println(s"isEven(3): ${isEven(3)}")
   println(s"isEven(4): ${isEven(4)}")
 
+  //4
+  val p1: Int => Int => Int => Boolean = x => y => z => x <= y && y == z
+  println(s"p1(3)(4)(4):${p1(3)(4)(4)}")
+  println(s"p1(5)(4)(4):${p1(5)(4)(4)}")
+
+  val p2: (Int, Int, Int) => Boolean = (x,y,z) => x <= y && y == z
+  println(s"p2(3,4,4):${p2(3,4,4)}")
+  println(s"p2(5,4,4):${p2(5,4,4)}")
+
+  def p3(x:Int)(y:Int)(z:Int):Boolean = x <= y && y == z
+  println(s"p3(3)(4)(4):${p3(3)(4)(4)}")
+  println(s"p3(5)(4)(4):${p3(5)(4)(4)}")
+
+  def p4(x: Int,y: Int,z: Int): Boolean = x <= y && y == z
+  println(s"p4(3,4,4):${p4(3, 4, 4)}")
+  println(s"p4(5,4,4):${p4(5, 4, 4)}")
