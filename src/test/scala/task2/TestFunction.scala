@@ -14,12 +14,19 @@ class TestFunction:
     assertEquals("positive", positiveDef(2))
     assertEquals("negative", positiveDef(-2))
 
-  @Test def testNotEmpty(): Unit =
-    assertEquals(true,  notEmpty("foo"))
+  def testNotEmpty(notEmpty: String => Boolean): Unit =
+    assertEquals(true, notEmpty("foo"))
     assertEquals(false, notEmpty(""))
-    assertEquals(true,  notEmpty("foo") && !notEmpty(""))
+    assertEquals(true, notEmpty("foo") && !notEmpty(""))
 
-  @Test def testNotEmptyDef(): Unit =
-    assertEquals(true,  notEmptyDef("foo"))
-    assertEquals(false, notEmptyDef(""))
-    assertEquals(true,  notEmptyDef("foo") && !notEmptyDef(""))
+  @Test def testNeg(): Unit =
+    val notEmpty: String => Boolean = neg(empty)
+    testNotEmpty(notEmpty)
+
+  @Test def testNegMethod(): Unit =
+    val notEmpty: String => Boolean = negDef(empty)
+    testNotEmpty(notEmpty)
+
+  @Test def testGenericNeg(): Unit =
+    val notEmpty: String => Boolean = negG[String](empty)
+    testNotEmpty(notEmpty)
