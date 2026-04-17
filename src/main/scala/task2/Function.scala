@@ -20,6 +20,13 @@ object Function:
   //c
   def negG[A](p: A => Boolean): A => Boolean = (x: A) => !p(x)
 
+  //4
+
+  val p1: Int => Int => Int => Boolean = x => y => z => x <= y && y == z
+  val p2: (Int, Int, Int) => Boolean = (x: Int, y:Int, z: Int) => x <= y && y == z
+  def p3(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
+  def p4(x: Int, y: Int, z: Int): Boolean = x <= y && y == z
+
   @main def testPositive(): Unit =
     println(positive(-5))
     println(positive(6))
@@ -43,3 +50,23 @@ object Function:
   @main def testGenericNeg(): Unit =
     val notEmpty: String => Boolean = negG[String](empty)
     printNet(notEmpty)
+
+  @main def testP1(): Unit =
+    println(p1(3)(4)(4))
+    println(p1(3)(5)(4))
+    println(p1(7)(5)(4))
+
+  @main def testP2(): Unit =
+    println(p2(3, 4, 4))
+    println(p2(3, 5, 4))
+    println(p2(7, 5, 4))
+
+  @main def testP3(): Unit =
+    println(p3(3)(4)(4))
+    println(p3(3)(5)(4))
+    println(p3(7)(5)(4))
+
+  @main def testP4(): Unit =
+    println(p4(3, 4, 4))
+    println(p4(3, 5, 4))
+    println(p4(7, 5, 4))

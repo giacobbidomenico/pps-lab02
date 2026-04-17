@@ -30,3 +30,23 @@ class TestFunction:
   @Test def testGenericNeg(): Unit =
     val notEmpty: String => Boolean = negG[String](empty)
     testNotEmpty(notEmpty)
+
+  @Test def testP1(): Unit =
+    assertEquals(true, p1(3)(4)(4))
+    assertEquals(false, p1(3)(5)(4))
+    assertEquals(false, p1(7)(5)(4))
+
+  @Test def testP2(): Unit =
+    assertEquals(true, p2(3, 4, 4))
+    assertEquals(false, p2(3, 5, 4))
+    assertEquals(false, p2(7, 5, 4))
+
+  @Test def testP3(): Unit =
+    assertEquals(true, p3(3)(4)(4))
+    assertEquals(false, p3(3)(5)(4))
+    assertEquals(false, p3(7)(5)(4))
+
+  @Test def testP4(): Unit =
+    assertEquals(true, p4(3, 4, 4))
+    assertEquals(false, p4(3, 5, 4))
+    assertEquals(false, p4(7, 5, 4))
