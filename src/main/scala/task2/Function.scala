@@ -21,11 +21,13 @@ object Function:
   def negG[A](p: A => Boolean): A => Boolean = (x: A) => !p(x)
 
   //4
-
   val p1: Int => Int => Int => Boolean = x => y => z => x <= y && y == z
   val p2: (Int, Int, Int) => Boolean = (x: Int, y:Int, z: Int) => x <= y && y == z
   def p3(x: Int)(y: Int)(z: Int): Boolean = x <= y && y == z
   def p4(x: Int, y: Int, z: Int): Boolean = x <= y && y == z
+
+  //5
+  def compose[A, B, C](f: B => C, g: A => B): A => C = (x: A) => f(g(x))
 
   @main def testPositive(): Unit =
     println(positive(-5))
@@ -70,3 +72,6 @@ object Function:
     println(p4(3, 4, 4))
     println(p4(3, 5, 4))
     println(p4(7, 5, 4))
+
+  @main def testCompose(): Unit =
+    println(compose[Int, Int, Int](_- 1, _ * 2)(5))

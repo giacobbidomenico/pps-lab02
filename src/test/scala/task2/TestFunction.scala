@@ -50,3 +50,6 @@ class TestFunction:
     assertEquals(true, p4(3, 4, 4))
     assertEquals(false, p4(3, 5, 4))
     assertEquals(false, p4(7, 5, 4))
+
+  @Test def testCompose(): Unit =
+    assertEquals(9, compose[Int, Int, Int](_- 1, _ * 2)(5))
