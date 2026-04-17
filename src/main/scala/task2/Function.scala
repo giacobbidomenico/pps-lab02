@@ -29,6 +29,9 @@ object Function:
   //5
   def compose[A, B, C](f: B => C, g: A => B): A => C = (x: A) => f(g(x))
 
+  //6
+  def composeThree[A, B, C, D](f: C => D, g: B => C, h: A => B): A => D = compose(f, compose(g, h))
+
   @main def testPositive(): Unit =
     println(positive(-5))
     println(positive(6))
@@ -75,3 +78,6 @@ object Function:
 
   @main def testCompose(): Unit =
     println(compose[Int, Int, Int](_- 1, _ * 2)(5))
+
+  @main def testComposeThree(): Unit =
+    println(composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))

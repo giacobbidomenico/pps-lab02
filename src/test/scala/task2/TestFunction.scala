@@ -53,3 +53,6 @@ class TestFunction:
 
   @Test def testCompose(): Unit =
     assertEquals(9, compose[Int, Int, Int](_- 1, _ * 2)(5))
+
+  @Test def testComposeThree(): Unit =
+    assertEquals("6!", composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
